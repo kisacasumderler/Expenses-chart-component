@@ -2,8 +2,13 @@ let sectionBody = document.querySelector("#SBody");
 let sectionBody2 = document.querySelector("#SBody2");
 
 let Tarih = new Date();
-let todayIndex = (Tarih.getDay())-1;
+let todayIndex;
 
+if((Tarih.getDay())-1<0){
+  todayIndex = 6;
+}else {
+  todayIndex = (Tarih.getDay())-1;
+}
 
 fetch("data.json")
   .then((response) => response.json())
@@ -20,7 +25,6 @@ fetch("data.json")
         }
 
         let divHeigt = (Math.ceil(amount)) * 3;
-        console.log(divHeigt);
         
         let dayHTML = dayElementsFunc(day);
         let amountHTML = amountElementsFunc(amount,dayClass,divHeigt);
